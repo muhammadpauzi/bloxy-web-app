@@ -1,0 +1,26 @@
+<main class="form-signin">
+    <form action="/signup" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Please Sign up</h1>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username"
+                value="{{body.username}}">
+            {{#if errors.username}}
+            <small class="text-danger">{{errors.username.msg}}</small>
+            {{/if}}
+            <label for="floatingUsername">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+            {{#if errors.password}}
+            <small class="text-danger">{{errors.password.msg}}</small>
+            {{/if}}
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="w-100 btn btn-primary" type="submit">Sign up</button>
+        <a href="/signin" class="d-block mt-2">Already have an
+            account?</a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+</main>
