@@ -24,3 +24,8 @@ body {
   line-height: 29px;
   color: #6c757d;
 }
+
+.blog-field img{
+  width: 100%;
+  
+}

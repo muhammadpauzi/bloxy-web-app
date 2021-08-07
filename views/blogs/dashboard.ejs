@@ -19,26 +19,27 @@
                     </div>
                 </div>
             <% } %> 
+            
             <% blogs.map(blog => { %> 
                 <div class="p-4 shadow-sm mb-2">
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="" class="fs-5 fw-normal text-decoration-none text-dark"><%= blog.title %></a>
                         <!-- Default dropstart button -->
                         <div class="btn-group dropstart">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bars"></i>
+                            <button type="button" class="btn btn-light dropdown-toggle d-flex align-items-center justify-content-center" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-menu-alt-right bx-sm'></i>
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/blogs/delete/<%= blog._id %>" class="dropdown-item text-danger">
-                                        <div class="pe-2 d-inline-block">
-                                            <i class="fa fa-trash"></i>
+                                    <a href="/blogs/delete/<%= blog._id %>" class="dropdown-item text-danger d-flex align-items-center py-2" onclick="return confirm('Are you sure to delete this blog?');">
+                                        <div class="pe-2 d-flex align-items-center">
+                                            <i class='bx bx-trash bx-sm'></i>
                                         </div>
                                         <span>Delete</span>
                                     </a>
-                                    <button class="dropdown-item" type="button">
-                                        <div class="pe-2 d-inline-block">
-                                            <i class="fa fa-edit"></i>
+                                    <button class="dropdown-item d-flex align-items-center py-2" type="button">
+                                        <div class="pe-2 d-flex align-items-center">
+                                            <i class='bx bx-message-square-edit bx-sm' ></i>
                                         </div>
                                         <span>Edit</span>
                                     </button>
