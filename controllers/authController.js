@@ -33,9 +33,7 @@ const signUpPost = async (req, res) => {
         req.flash('message', { message: 'Congratulations, Your account has been successfully registered.', type: 'success' });
         res.redirect('/auth/signin');
     } catch (error) {
-        return showErrorPage(res, {
-            error
-        });
+        return showErrorPage(res, error);
     }
 };
 

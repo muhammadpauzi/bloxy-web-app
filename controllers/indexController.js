@@ -12,9 +12,7 @@ const home = async (req, res) => {
             blogs
         });
     } catch (error) {
-        return showErrorPage(res, {
-            error
-        });
+        return showErrorPage(res, error);
     }
 };
 

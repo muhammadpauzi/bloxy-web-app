@@ -13,9 +13,7 @@ const dashboard = async (req, res) => {
             blogs
         });
     } catch (error) {
-        return showErrorPage(res, {
-            error
-        });
+        return showErrorPage(res, error);
     }
 };
 
@@ -40,9 +38,7 @@ const createPost = async (req, res) => {
         req.flash('message', { message: 'Blog has been created.', type: 'success' });
         res.redirect('/blogs/dashboard');
     } catch (err) {
-        return showErrorPage(res, {
-            error
-        });
+        return showErrorPage(res, error);
     }
 }
 
