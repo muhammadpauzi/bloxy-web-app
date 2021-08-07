@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     name: {
         type: String,
@@ -23,4 +24,4 @@ UserSchema.pre('save', async function (next) {
     next();
 })
 
-module.exports = mongoose.model('UserSchema', UserSchema);
+module.exports = mongoose.model('User', UserSchema);

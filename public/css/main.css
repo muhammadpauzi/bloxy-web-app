@@ -13,3 +13,9 @@ body {
   padding: 15px;
   margin: 5rem auto;
 }
+
+/* remove triangle icon */
+.dropdown-toggle:before{
+  border: none !important;
+  margin: 0 !important;
+}

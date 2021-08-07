@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-const exphbs = require('express-handlebars');
+const MongoStore = require('connect-mongo');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const expressLayouts = require('express-ejs-layouts');
 const { join } = require('path');
+const flash = require('connect-flash');
+const passport = require('passport');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,27 +25,39 @@ mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => {
     console.log("Mongodb connected.");
 }).catch(err => {
-    console.log("Mongodb error :", err);
+    console.log("Mongodb error :", err.message);
     process.exit(1);
 })
 
 // sessions
 app.use(session({
+    name: 'session-id',
     secret: process.env.SECRET_SESSION,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
 }));
+app.use(flash());
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
+require('./configs/passport')(passport);
 
 // logging
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
 }
 
-// handlebars
-app.engine('.hbs', exphbs({ defaultLayout: "main", extname: '.hbs' }));
-app.set('view engine', '.hbs');
+// ejs
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+app.set('layout', './layouts/main');
 
+// routes
 app.use('/', require('./routes/index'));
+app.use('/blogs', require('./routes/blogs'));
+app.use('/auth', require('./routes/auth'));
 
 app.listen(PORT, () => {
     console.log(`Server is running in ${process.env.NODE_ENV} on port ${PORT}.`);

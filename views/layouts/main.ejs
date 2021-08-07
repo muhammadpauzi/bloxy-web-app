@@ -11,9 +11,9 @@
 </head>
 
 <body>
-    {{> _navbar}}
-    <div class="container">
-        {{{body}}}
+    <%- include('../partials/_navbar') %>
+    <div class="container mt-4">
+        <%- body %>
     </div>
 
     <script src="/fontawesome/all.min.js"></script>

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light py-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">Bloxy</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <% if(typeof isAuthenticated != 'undefined' && isAuthenticated){ %>
+                    <li class="nav-item">
+                        <a href="/blogs/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Blogs
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="/blogs/create" class="dropdown-item" href="#">Create blog</a></li>
+                        </ul>
+                    </li>
+                <% } %>
+            </ul>
+            <ul class="navbar-nav">
+                <% if(typeof isAuthenticated != 'undefined' && isAuthenticated){ %>
+                    <li class="nav-item mt-sm-0 mt-2">
+                        <a href="" class="nav-link"><%= user.username %></a>
+                    </li>
+                    <li class="nav-item mt-sm-0 mt-2 ms-sm-1 ms-0">
+                        <a href="/auth/signout" onclick="return confirm('Are you sure to sign out?')" class="nav-link btn btn-danger text-white px-4">Sign out</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item mt-sm-0 mt-2">
+                        <a href="/auth/signin" class="nav-link btn btn-primary text-white px-4">Sign in</a>
+                    </li>
+                    <li class="nav-item mt-sm-0 mt-2 ms-sm-1 ms-0">
+                        <a href="/auth/signup" class="nav-link btn btn-primary text-white px-4">Sign up</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

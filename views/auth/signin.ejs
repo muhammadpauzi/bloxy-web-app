@@ -1,0 +1,29 @@
+<main class="form-signin">
+    <form action="" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Please Sign in</h1>
+        <% if(typeof message !== 'undefined' ){ %>
+        <div class="alert alert-<%= message.type %>" role="alert">
+            <%= message.message %>
+        </div>
+        <% } %>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username" value="<%= (old) ? old.username : '' %>">
+            <% if(typeof errors !== 'undefined' && errors.username){ %>
+            <small class="text-danger"><%= errors.username.msg %></small>
+            <% } %>
+            <label for="floatingUsername">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+            <% if(typeof errors !== 'undefined' && errors.password){ %>
+            <small class="text-danger"><%= errors.password.msg %></small>
+            <% } %>
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="w-100 btn btn-primary" type="submit">Sign in</button>
+        <a href="/signup" class="d-block mt-2">Don't have an
+            account?</a>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+</main>
