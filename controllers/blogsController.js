@@ -48,8 +48,17 @@ const deleteBlog = async (req, res) => {
         if (id) {
             isValid = isIDValid(id);
             if (isValid) {
-                await Blog.findByIdAndDelete(id);
-                req.flash('messageBlog', { message: 'Blog has been deleted.', type: 'success' });
+                const blog = await Blog.findById(id);
+                if (blog) {
+                    if (blog.idUser == req.user.id) {
+                        blog.remove();
+                        req.flash('messageBlog', { message: 'Blog has been deleted.', type: 'success' });
+                    } else {
+                        return showErrorPage(res, '', "You don't have access to this page.", 403);
+                    }
+                } else {
+                    return showErrorPage(res, '', 'Blog not found.', 404);
+                }
             }
         }
         res.redirect('/blogs/dashboard');
