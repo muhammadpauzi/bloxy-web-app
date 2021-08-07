@@ -1,5 +1,7 @@
 const showErrorPage = require('./showErrorPage');
+const isIDValid = require('./isIDValid');
 
 module.exports = {
-    showErrorPage
+    isIDValid,
+    showErrorPage,
 }

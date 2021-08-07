@@ -12,7 +12,6 @@ const initializePassport = (passport) => {
         if (!isSame) {
             return done(null, false, req.flash('message', { message: 'Username or password incorrect.', type: 'danger' }));
         }
-        console.log('success')
         return done(null, user);
     }));
 

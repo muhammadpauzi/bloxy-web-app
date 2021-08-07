@@ -8,9 +8,10 @@ const { signIn, signInPost, signUp, signUpPost, signOut } = require('../controll
 router.get('/signin', ensureGuest, signIn);
 
 router.post('/signin', ensureGuest, signinValidation, signInPost, passport.authenticate('local', {
-    successRedirect: '/auth/dashboard',
+    successRedirect: '/blogs/dashboard',
     failureRedirect: '/auth/signin',
-    failureFlash: true
+    failureFlash: true,
+    successFlash: true
 }));
 
 router.get('/signup', ensureGuest, signUp);
