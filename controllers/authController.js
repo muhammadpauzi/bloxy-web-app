@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { validationResult } = require('express-validator');
+const { showErrorPage } = require('../helpers');
 
 const signIn = (req, res) => {
     res.render('auth/signin', {
@@ -31,8 +32,10 @@ const signUpPost = async (req, res) => {
         await User.create(req.body);
         req.flash('message', { message: 'Congratulations, Your account has been successfully registered.', type: 'success' });
         res.redirect('/auth/signin');
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        return showErrorPage(res, {
+            error
+        });
     }
 };
 

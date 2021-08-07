@@ -1,22 +1,30 @@
 const Blog = require('../models/Blog');
 const { validationResult } = require('express-validator');
+const { showErrorPage } = require('../helpers');
 
 const dashboard = async (req, res) => {
-    const blogs = await Blog.find({ idUser: req.user.id }).sort({
-        createdAt: -1
-    });
-    res.render('blogs/dashboard', {
-        user: req.user,
-        isAuthenticated: req.isAuthenticated(),
-        blogs
-    });
+    try {
+        const blogs = await Blog.find({ idUser: req.user.id }).sort({
+            createdAt: -1
+        });
+        res.render('blogs/dashboard', {
+            user: req.user,
+            isAuthenticated: req.isAuthenticated(),
+            blogs
+        });
+    } catch (error) {
+        return showErrorPage(res, {
+            error
+        });
+    }
 };
 
 const create = (req, res) => {
     res.render('blogs/create', {
         user: req.user,
         isAuthenticated: req.isAuthenticated(),
-        old: null
+        old: null,
+        message: req.flash('massage')[0]
     });
 }
 
@@ -32,7 +40,9 @@ const createPost = async (req, res) => {
         req.flash('message', { message: 'Blog has been created.', type: 'success' });
         res.redirect('/blogs/dashboard');
     } catch (err) {
-        console.log(err);
+        return showErrorPage(res, {
+            error
+        });
     }
 }
 
