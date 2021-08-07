@@ -12,31 +12,7 @@
             <% blogs.map(blog => { %> 
             <div class="col-md-6">
                 <div class="p-4 shadow-sm mb-2">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a href="" class="fs-5 fw-normal text-decoration-none text-dark"><%= blog.title %></a>
-                        <!-- Default dropstart button -->
-                        <div class="btn-group dropstart">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button class="dropdown-item text-danger" type="button">
-                                        <div class="pe-2 d-inline-block">
-                                            <i class="fa fa-trash"></i>
-                                        </div>
-                                        <span>Delete</span>
-                                    </button>
-                                    <button class="dropdown-item" type="button">
-                                        <div class="pe-2 d-inline-block">
-                                            <i class="fa fa-edit"></i>
-                                        </div>
-                                        <span>Edit</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a href="/blog/<%= blog.slug %>" class="fs-5 fw-normal text-decoration-none text-dark"><%= blog.title %></a>
                     <p class="text-secondary fw-light mt-2"><%= blog.description %></p>
                     <div>
                         <span class="text-danger pe-1">10 likes</span>

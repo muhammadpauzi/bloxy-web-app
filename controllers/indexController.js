@@ -16,6 +16,28 @@ const home = async (req, res) => {
     }
 };
 
+const blog = async (req, res) => {
+    try {
+        const { slug } = req.params;
+        if (slug) {
+            const blogBySlug = await Blog.findOne({ slug });
+            if (blogBySlug) {
+                return res.render('blog', {
+                    user: req.user,
+                    isAuthenticated: req.isAuthenticated(),
+                    blog: blogBySlug
+                });
+            } else {
+                return showErrorPage(res, '', `Blog with ${slug} slug not found.`, 404);
+            }
+        }
+        res.redirect('/');
+    } catch (error) {
+        return showErrorPage(res, error);
+    }
+}
+
 module.exports = {
-    home
+    home,
+    blog
 }

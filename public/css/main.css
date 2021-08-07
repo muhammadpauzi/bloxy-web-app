@@ -19,3 +19,8 @@ body {
   border: none !important;
   margin: 0 !important;
 }
+
+.blog-field p{
+  line-height: 29px;
+  color: #6c757d;
+}
