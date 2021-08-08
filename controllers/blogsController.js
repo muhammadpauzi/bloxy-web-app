@@ -4,7 +4,7 @@ const { showErrorPage, isIDValid } = require('../helpers');
 
 const dashboard = async (req, res) => {
     try {
-        const blogs = await Blog.find({ idUser: req.user.id }).sort({
+        const blogs = await Blog.find({ user: req.user.id }).sort({
             createdAt: -1
         });
         res.render('blogs/dashboard', {
@@ -33,7 +33,7 @@ const createPost = async (req, res) => {
             return res.render('blogs/create', { errors: errors.mapped(), old: req.body });
         }
         // set id
-        req.body.idUser = req.user.id;
+        req.body.user = req.user.id;
         await Blog.create(req.body);
         req.flash('messageBlog', { message: 'Blog has been created.', type: 'success' });
         res.redirect('/blogs/dashboard');
@@ -50,7 +50,7 @@ const deleteBlog = async (req, res) => {
             if (isValid) {
                 const blog = await Blog.findById(id);
                 if (blog) {
-                    if (blog.idUser == req.user.id) {
+                    if (blog.user == req.user.id) {
                         blog.remove();
                         req.flash('messageBlog', { message: 'Blog has been deleted.', type: 'success' });
                     } else {

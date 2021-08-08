@@ -22,9 +22,10 @@ const BlogSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    idUser: {
-        type: mongoose.Types.ObjectId,
-        required: true
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User"
     },
     sanitizedHtml: {
         type: String,

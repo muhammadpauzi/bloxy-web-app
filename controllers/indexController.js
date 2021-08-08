@@ -20,7 +20,7 @@ const blog = async (req, res) => {
     try {
         const { slug } = req.params;
         if (slug) {
-            const blogBySlug = await Blog.findOne({ slug });
+            const blogBySlug = await Blog.findOne({ slug }).populate('user');
             if (blogBySlug) {
                 return res.render('blog', {
                     user: req.user,
