@@ -22,10 +22,14 @@ body {
 
 .blog-field p{
   line-height: 29px;
-  color: #6c757d;
+  color: #494a4b;
+  font-weight: 400;
+}
+
+.blog-field h1, .blog-field h2, .blog-field h3, .blog-field h4, .blog-field h5, .blog-field h6{
+  font-weight: 600;
 }
 
 .blog-field img{
   width: 100%;
-  
 }

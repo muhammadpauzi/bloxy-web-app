@@ -2,3 +2,4 @@ node_modules/
 .vscode/
 TODO
 .env
+public/boxicons
