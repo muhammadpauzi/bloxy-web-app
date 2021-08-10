@@ -27,6 +27,10 @@ const BlogSchema = new mongoose.Schema({
         required: true,
         ref: "User"
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     sanitizedHtml: {
         type: String,
         required: true

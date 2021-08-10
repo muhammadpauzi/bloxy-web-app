@@ -4,7 +4,15 @@ const { showErrorPage, isIDValid } = require('../helpers');
 
 const dashboard = async (req, res) => {
     try {
-        const blogs = await Blog.find({ user: req.user.id }).sort({
+        let filters = {
+            user: req.user.id
+        }
+        if (req.query.search) {
+            filters['$text'] = {
+                $search: req.query.search || '',
+            }
+        }
+        const blogs = await Blog.find(filters).sort({
             createdAt: -1
         });
         res.render('blogs/dashboard', {

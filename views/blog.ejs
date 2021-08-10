@@ -7,14 +7,16 @@
                     <span><%= blog.user.name %></span>
                     <span> - </span>
                     <span class="text-secondary"><%= blog.createdAt.toLocaleString() %></span>
-                    <% if(blog.createdAt.toLocaleString() != blog.updatedAt.toLocaleString()) { %>
-                        <span class="text-secondary">Modified at <%= blog.updatedAt.toLocaleString() %></span>
-                    <% } %>
                 </div>
                 <div class="row">
                     <div class="col py-5 blog-field">
                         <%- blog.sanitizedHtml %>
                     </div>
+                </div>
+                <div class="py-2 mt-4">
+                    <% if(blog.createdAt.toLocaleString() != blog.updatedAt.toLocaleString()) { %>
+                        <span class="text-secondary">Modified at <%= blog.updatedAt.toLocaleString() %></span>
+                    <% } %>
                 </div>
         </div>
     </div>

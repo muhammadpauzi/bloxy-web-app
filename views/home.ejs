@@ -15,8 +15,8 @@
                     <a href="/blog/<%= blog.slug %>" class="fs-5 fw-normal text-decoration-none text-dark"><%= blog.title %></a>
                     <p class="text-secondary fw-light mt-2"><%= blog.description %></p>
                     <div>
-                        <span class="text-danger pe-1">10 likes</span>
-                        <span class="text-success px-1">125 views</span>
+                        <span class="text-success"><%= blog.views.toString() + ' ' + (blog.views == 1 ?  'view' : 'views') %></span>
+                        <span class="text-secondary ps-1"><%= blog.createdAt.toLocaleDateString() %></span>
                     </div>
                 </div>
             </div>
